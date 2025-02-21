@@ -1,3 +1,4 @@
 {
-	"mfeDs": "http://localhost:4201/remoteEntry.json"
+	"mfeDs": "http://localhost:4201/remoteEntry.json",
+	"shell": "http://localhost:4200/remoteEntry.json"
 }

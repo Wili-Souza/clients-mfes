@@ -2,25 +2,41 @@ import { loadRemoteModule } from '@angular-architects/native-federation';
 import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
-  DoBootstrap,
   inject,
   Injector,
-  OnInit
+  OnInit,
 } from '@angular/core';
-
 import { createCustomElement } from '@angular/elements';
+import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { ClientsStore } from './core/store/clients.store';
 
 @Component({
   selector: 'app-root',
   imports: [],
+  providers: [ClientsStore],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppComponent implements OnInit {
-  private injector = inject(Injector);
+  private readonly injector = inject(Injector);
+  private readonly router = inject(Router);
+  protected readonly store = inject(ClientsStore);
+
+  protected readonly nameControl = new FormControl();
 
   async ngOnInit() {
+    this.loadDsComponents();
+  }
+
+  onSubmit(name: string): void {
+    this.store.setUserName(name);
+    this.router.navigate(['/clients']);
+  }
+
+  private async loadDsComponents() {
     const elements: any[] = [
       ['ButtonComponent', 'ds-button'],
       ['FieldComponent', 'ds-field'],
@@ -28,7 +44,7 @@ export class AppComponent implements OnInit {
 
     for (let [name, tag] of elements) {
       const m = await loadRemoteModule({
-        remoteEntry: 'http://localhost:4201/remoteEntry.json',
+        remoteName: 'mfeDs',
         exposedModule: `./${name}`,
       });
 

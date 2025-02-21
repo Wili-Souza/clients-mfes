@@ -1,7 +1,13 @@
 <div class="login-page">
   <div class="login-card">
     <h1 class="title">Olá, seja bem vindo!</h1>
-    <ds-field class="field" placeholder="Digite o seu nome:"></ds-field>
-    <ds-button class="button">Entrar</ds-button>
+    <ds-field
+      class="field"
+      placeholder="Digite o seu nome:"
+      [control]="nameControl"
+    ></ds-field>
+    <ds-button class="button" (click)="onSubmit(nameControl.value)">
+      Entrar
+    </ds-button>
   </div>
 </div>

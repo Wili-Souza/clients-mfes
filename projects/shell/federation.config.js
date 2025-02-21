@@ -6,6 +6,11 @@ const {
 module.exports = withNativeFederation({
   name: "shell",
 
+  exposes: {
+    "./ClientsStorageService":
+      "projects/shell/src/app/core/services/clients-storage.service.ts",
+  },
+
   shared: {
     ...shareAll({
       singleton: true,
