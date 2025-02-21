@@ -1,4 +1,4 @@
-@use '../../styles/colors.scss' as *;
+@use "../../styles/colors.scss" as *;
 
 .button {
   width: 100%;
@@ -8,8 +8,10 @@
   font-weight: 700;
   font-size: 24px;
   border: none;
+  border-radius: 4px;
   padding: 16px 20px;
   color: #000000;
+  transition: 0.2s opacity;
 
   &.solid {
     &.orange {
@@ -25,5 +27,13 @@
       border-color: $primary-color;
       color: $primary-color;
     }
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:active {
+    opacity: 0.7;
   }
 }
