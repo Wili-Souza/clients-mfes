@@ -7,6 +7,7 @@ module.exports = withNativeFederation({
   exposes: {
     './Component': './projects/mfe-ds/src/app/app.component.ts',
     './ButtonComponent': 'projects/mfe-ds/src/app/components/button/button.component.ts',
+    './FieldComponent': 'projects/mfe-ds/src/app/components/field/field.component.ts',
   },
 
   shared: {

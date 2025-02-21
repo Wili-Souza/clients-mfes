@@ -1,0 +1,19 @@
+@use '../../styles/colors.scss' as *;
+
+.field {
+  width: 100%;
+  padding: 16px 20px;
+  font-size: 24px;
+  border-radius: 4px;
+  color: $light-grey;
+  border: 2px solid $grey;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: $light-grey;
+  }
+
+  &:active {
+    outline: none;
+  }
+}
