@@ -1,0 +1,7 @@
+@use "./fonts.scss";
+@use "./colors.scss" as *;
+
+* {
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+}

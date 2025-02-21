@@ -6,6 +6,7 @@ module.exports = withNativeFederation({
 
   exposes: {
     './Component': './projects/mfe-ds/src/app/app.component.ts',
+    './ButtonComponent': 'projects/mfe-ds/src/app/components/button/button.component.ts',
   },
 
   shared: {
@@ -22,5 +23,5 @@ module.exports = withNativeFederation({
 
   // Please read our FAQ about sharing libs:
   // https://shorturl.at/jmzH0
-  
+
 });

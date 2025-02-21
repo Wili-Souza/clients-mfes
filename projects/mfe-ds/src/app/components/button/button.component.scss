@@ -1,0 +1,29 @@
+@use '../../styles/colors.scss' as *;
+
+.button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 24px;
+  border: none;
+  padding: 16px 20px;
+  color: #000000;
+
+  &.solid {
+    &.orange {
+      background-color: $primary-color;
+      color: #ffffff;
+    }
+  }
+
+  &.outline {
+    border: solid 1px black;
+
+    &.orange {
+      border-color: $primary-color;
+      color: $primary-color;
+    }
+  }
+}
