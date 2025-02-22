@@ -18,6 +18,8 @@ module.exports = withNativeFederation({
       "projects/mfe-ds/src/app/components/modal-container/modal-container.component.ts",
     "./SelectComponent":
       "projects/mfe-ds/src/app/components/select/select.component.ts",
+    "./PaginatorComponent":
+      "projects/mfe-ds/src/app/components/paginator/paginator.component.ts",
   },
 
   shared: {

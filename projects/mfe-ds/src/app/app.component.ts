@@ -4,10 +4,17 @@ import { ModalContainerComponent } from './components/modal-container/modal-cont
 import { ButtonComponent } from './components/button/button.component';
 import { FieldComponent } from './components/field/field.component';
 import { SelectComponent } from './components/select/select.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 
 @Component({
   selector: 'app-root',
-  imports: [CardComponent, FieldComponent, ButtonComponent, SelectComponent],
+  imports: [
+    CardComponent,
+    FieldComponent,
+    ButtonComponent,
+    SelectComponent,
+    PaginatorComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

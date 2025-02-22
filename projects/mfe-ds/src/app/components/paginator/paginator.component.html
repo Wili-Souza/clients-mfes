@@ -1,0 +1,11 @@
+<div class="paginator">
+  @for(page of pages; track $index) {
+    <div
+    (click)="changePage(page)"
+    [class.active]="page === currentPage"
+    class="page"
+  >
+    {{ page }}
+  </div>
+  }
+</div>

@@ -1,0 +1,26 @@
+@use "../../styles/colors.scss" as *;
+
+.paginator {
+  display: flex;
+  align-items: center;
+
+  .page {
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:active {
+      opacity: 0.6;
+    }
+
+    &.active {
+      background-color: $primary-color;
+      color: #ffffff;
+    }
+  }
+}
