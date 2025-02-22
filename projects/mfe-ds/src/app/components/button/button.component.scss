@@ -5,13 +5,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 24px;
   border: none;
   border-radius: 4px;
-  padding: 16px 20px;
   color: #000000;
   transition: 0.2s opacity;
+  font-weight: 700;
 
   &.solid {
     &.orange {
@@ -27,6 +25,21 @@
       border-color: $primary-color;
       color: $primary-color;
     }
+  }
+
+  &.large {
+    padding: 16px 20px;
+    font-size: 24px;
+  }
+
+  &.medium {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  &.small {
+    padding: 8px 12px;
+    font-size: 12px;
   }
 
   &:hover {

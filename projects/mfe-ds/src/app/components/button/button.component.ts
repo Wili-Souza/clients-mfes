@@ -4,6 +4,7 @@ import { Component, Input } from '@angular/core';
 
 export type ButtonType = 'solid' | 'outline';
 export type ButtonColor = 'orange';
+export type ButtonSize = 'small' | 'medium' | 'large';
 
 @Component({
   selector: 'app-button',
@@ -15,4 +16,5 @@ export type ButtonColor = 'orange';
 export class ButtonComponent {
   @Input() type: ButtonType = 'solid';
   @Input() color: ButtonColor = 'orange';
+  @Input() size: ButtonSize = 'medium';
 }
