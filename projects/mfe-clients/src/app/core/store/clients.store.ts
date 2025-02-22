@@ -13,6 +13,7 @@ import { loadRemoteModule } from '@angular-architects/native-federation';
 import { from, Observable, tap } from 'rxjs';
 
 type ClientsState = {
+  userName: string | undefined;
   clients: Client[];
   selectedClient: Client | undefined;
   addedClients: Client[];
@@ -25,6 +26,7 @@ type ClientsState = {
 };
 
 const initialState: ClientsState = {
+  userName: undefined,
   selectedClient: undefined,
   addedClients: [],
   storage: undefined,
@@ -49,6 +51,14 @@ export const ClientsStore = signalStore(
       clientService = inject(ClientService),
       injector = inject(Injector)
     ) => ({
+      getUserName(): void {
+        if (!store.storage()) return;
+        const userName = store.storage().getUserName();
+        console.log({ userName });
+        patchState(store, () => ({
+          userName: userName ?? undefined,
+        }));
+      },
       getClients(): void {
         const { page, limit } = store.pagination();
         clientService.getAll(page, limit).subscribe({
@@ -113,6 +123,12 @@ export const ClientsStore = signalStore(
       selectClient(selectedClient: Client): void {
         patchState(store, () => ({ selectedClient }));
       },
+      logout(): void {
+        patchState(store, () => ({ userName: undefined }));
+        if (store.storage()) {
+          store.storage().resetUserName();
+        }
+      },
       fetchStorageService(): Observable<any> {
         return from(
           loadRemoteModule({
@@ -133,6 +149,7 @@ export const ClientsStore = signalStore(
     onInit(store) {
       store.fetchStorageService().subscribe({
         next: () => {
+          store.getUserName();
           store.getClients();
           store.getAddedClients();
         },

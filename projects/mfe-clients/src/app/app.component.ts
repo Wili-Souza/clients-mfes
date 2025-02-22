@@ -18,6 +18,7 @@ import {
 import { ClientsStore } from './core/store/clients.store';
 import { Client } from './shared/models/client';
 import { PAGE_LIMIT_OPTIONS } from './core/core.constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +31,7 @@ import { PAGE_LIMIT_OPTIONS } from './core/core.constants';
 export class AppComponent implements OnInit {
   protected readonly store = inject(ClientsStore);
   private readonly injector = inject(Injector);
+  private readonly router = inject(Router);
 
   protected addClientModalActive: boolean = false;
   protected deleteClientModalActive: boolean = false;
@@ -51,6 +53,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadDsComponents();
+  }
+
+  onLogout(): void {
+    this.store.logout();
+    this.router.navigate(['/login']);
   }
 
   onPageLimitSelected(event: any): void {
@@ -119,6 +126,7 @@ export class AppComponent implements OnInit {
       ['ModalContainerComponent', 'ds-modal-container'],
       ['SelectComponent', 'ds-select'],
       ['PaginatorComponent', 'ds-paginator'],
+      ['NavBarComponent', 'ds-nav-bar'],
     ];
 
     for (let [name, tag] of elements) {
