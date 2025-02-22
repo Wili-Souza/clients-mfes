@@ -1,15 +1,24 @@
 <div class="card">
   <div class="content">
     <span class="name">{{ name }}</span>
-    <span class="text">Salário: R$ {{ salary }} </span>
-    <span class="text">Empresa: R$ {{ companyValuation }} </span>
+    <span class="text">Salário: {{ salary | currency : "R$" }} </span>
+    <span class="text">Empresa: {{ companyValuation | currency : "R$" }} </span>
   </div>
   <div class="options">
     @if(readonly) {
-    <div class="option" (click)="add.emit()">plus</div>
-    <div class="option" (click)="edit.emit()">pencil</div>
-    <div class="option" (click)="remove.emit()">trash</div>
+    <div class="option" (click)="add.emit()">
+      <img src="http://localhost:4201/images/plus.png" alt="" />
+    </div>
+    <div class="option" (click)="edit.emit()">
+      <img src="http://localhost:4201/images/pencil.png" alt="" />
+    </div>
+    <div class="option" (click)="remove.emit()">
+      <img src="http://localhost:4201/images/trash.png" alt="" />
+    </div>
     } @else {
-      <div class="option" (click)="unselect.emit()">minus</div> }
+    <div class="option" (click)="unselect.emit()">
+      <img src="http://localhost:4201/images/minus.png" alt="" />
+    </div>
+    }
   </div>
 </div>

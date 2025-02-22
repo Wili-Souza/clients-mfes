@@ -1,8 +1,20 @@
+import { CurrencyPipe, registerLocaleData } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import localePt from '@angular/common/locales/pt';
+import { LOCALE_ID } from '@angular/core';
+
+registerLocaleData(localePt);
 
 @Component({
   selector: 'app-card',
-  imports: [],
+  imports: [CurrencyPipe],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-BR',
+    },
+    CurrencyPipe,
+  ],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
 })

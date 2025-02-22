@@ -32,6 +32,10 @@
       text-align: center;
       cursor: pointer;
 
+      img {
+        width: 1.2rem;
+      }
+
       &:hover {
         opacity: .8;
       }
