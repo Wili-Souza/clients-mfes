@@ -1,0 +1,28 @@
+<div class="nav-bar">
+  <header class="header">
+    <img
+      src="http://localhost:4200/images/hamburguer-menu.png"
+      alt="hamburguer menu icon"
+      class="menu"
+    />
+    <img
+      src="http://localhost:4200/images/logo.png"
+      alt="Teddy Open Finance logo"
+      class="logo"
+    />
+  </header>
+  <div class="navigation">
+    <div class="option" [routerLink]="['/clients']" routerLinkActive="active">
+      Clientes
+    </div>
+    <div class="option" [routerLink]="['/selected']" routerLinkActive="active">
+      Clientes selecionados
+    </div>
+    <div class="option" (click)="logout.emit()" routerLinkActive="active">
+      Sair
+    </div>
+  </div>
+  <div class="user">
+    Olá, <span class="bold">{{ userName ?? "Usuário" }}</span>
+  </div>
+</div>

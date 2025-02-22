@@ -1,0 +1,73 @@
+@use "../../styles/colors.scss" as *;
+
+.nav-bar {
+  width: 100vw;
+  padding: 20px 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 2px 2px 0px #0000001a;
+
+  .header,
+  .navigation,
+  .user {
+    display: flex;
+    align-items: center;
+  }
+
+  .header,
+  .navigation {
+    gap: 32px;
+  }
+
+  .header {
+    .menu {
+      position: absolute;
+      left: 50px;
+      width: 1.7rem;
+      cursor: pointer;
+      transition: 0.2s opacity;
+
+      &:hover {
+        opacity: 0.9;
+      }
+
+      &:active {
+        opacity: 0.7;
+      }
+    }
+
+    .logo {
+      width: 90px;
+    }
+  }
+
+  .navigation {
+    .option {
+      cursor: pointer;
+      transition: 0.2s opacity;
+      border-bottom: 2px solid transparent;
+
+      &.active {
+        color: $primary-color;
+        border-bottom: 2px solid $primary-color;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      &:active {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  .user {
+    gap: 4px;
+
+    .bold {
+      font-weight: 700;
+    }
+  }
+}
