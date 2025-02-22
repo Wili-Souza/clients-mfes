@@ -12,10 +12,18 @@ import { Client } from '../../shared/models/client';
 
 type ClientsState = {
   clients: Client[];
+  pagination: {
+    limit: number;
+    page: number;
+  };
 };
 
 const initialState: ClientsState = {
   clients: [],
+  pagination: {
+    limit: 16,
+    page: 1,
+  },
 };
 
 const CLIENTS_STATE = new InjectionToken<ClientsState>('UsersState', {
@@ -27,9 +35,22 @@ export const ClientsStore = signalStore(
 
   withMethods((store, clientService = inject(ClientService)) => ({
     getClients(): void {
-      clientService.getAll(1, 3).subscribe({
+      const { page, limit } = store.pagination();
+      clientService.getAll(page, limit).subscribe({
         next: (clients) => patchState(store, () => ({ clients })),
       });
+    },
+    setItemPerPage(limit: number): void {
+      patchState(store, () => ({
+        pagination: { ...store.pagination(), limit },
+      }));
+      this.getClients();
+    },
+    setPage(page: number): void {
+      patchState(store, () => ({
+        pagination: { ...store.pagination(), page },
+      }));
+      this.getClients();
     },
   })),
 

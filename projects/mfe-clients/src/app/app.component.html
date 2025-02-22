@@ -1,3 +1,22 @@
 <div class="clients-page">
-
+  <div class="list-header">
+    <div class="section">
+      <span class="value">{{ store.clients().length }}</span> clientes
+      encontrados
+    </div>
+    <div class="section">
+      Clientes por página:
+      <input [formControl]="limitControl" type="text" />
+    </div>
+  </div>
+  <div class="list">
+    @for(client of store.clients(); track client.id) {
+    <ds-card
+      class="card"
+      [name]="client.name"
+      [salary]="client.salary"
+      [companyValuation]="client.companyValuation"
+    ></ds-card>
+    }
+  </div>
 </div>
