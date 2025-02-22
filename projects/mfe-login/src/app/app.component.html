@@ -3,10 +3,15 @@
     <h1 class="title">Olá, seja bem vindo!</h1>
     <ds-field
       class="field"
+      size="large"
       placeholder="Digite o seu nome:"
       [control]="nameControl"
     ></ds-field>
-    <ds-button class="button" (click)="onSubmit(nameControl.value)">
+    <ds-button
+      size="large"
+      class="button"
+      (click)="onSubmit(nameControl.value)"
+    >
       Entrar
     </ds-button>
   </div>
