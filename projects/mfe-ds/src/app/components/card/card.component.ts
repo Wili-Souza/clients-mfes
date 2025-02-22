@@ -22,7 +22,7 @@ export class CardComponent {
   @Input({ required: true }) name?: string;
   @Input({ required: true }) salary?: number;
   @Input({ required: true }) companyValuation?: number;
-  @Input() readonly: boolean = true;
+  @Input() readOnly: boolean = true;
 
   @Output() add = new EventEmitter<void>();
   @Output() edit = new EventEmitter<void>();

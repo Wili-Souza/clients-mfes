@@ -5,7 +5,11 @@
     <span class="text">Empresa: {{ companyValuation | currency : "R$" }} </span>
   </div>
   <div class="options">
-    @if(readonly) {
+    @if(readOnly) {
+    <div class="option" (click)="unselect.emit()">
+      <img src="http://localhost:4201/images/minus.png" alt="" />
+    </div>
+    } @else {
     <div class="option" (click)="add.emit()">
       <img src="http://localhost:4201/images/plus.png" alt="" />
     </div>
@@ -14,10 +18,6 @@
     </div>
     <div class="option" (click)="remove.emit()">
       <img src="http://localhost:4201/images/trash.png" alt="" />
-    </div>
-    } @else {
-    <div class="option" (click)="unselect.emit()">
-      <img src="http://localhost:4201/images/minus.png" alt="" />
     </div>
     }
   </div>
