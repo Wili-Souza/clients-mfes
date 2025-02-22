@@ -20,6 +20,7 @@
         class="card"
         [name]="client.name"
         [salary]="client.salary"
+        [readOnly]="false"
         [companyValuation]="client.companyValuation"
         (remove)="onDeleteClient(client)"
         (edit)="onEditClient(client)"
