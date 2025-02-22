@@ -10,11 +10,12 @@ import {
 import { ClientService } from '../../data/services/client.service';
 import { Client } from '../../shared/models/client';
 import { loadRemoteModule } from '@angular-architects/native-federation';
-import { from, Observable, switchMap, tap } from 'rxjs';
+import { from, Observable, tap } from 'rxjs';
 
 type ClientsState = {
   clients: Client[];
   selectedClient: Client | undefined;
+  addedClients: Client[];
   storage: any | undefined;
   pagination: {
     limit: number;
@@ -25,6 +26,7 @@ type ClientsState = {
 
 const initialState: ClientsState = {
   selectedClient: undefined,
+  addedClients: [],
   storage: undefined,
   clients: [],
   pagination: {
@@ -56,6 +58,23 @@ export const ClientsStore = signalStore(
               pagination: { ...store.pagination(), totalPages },
             })),
         });
+      },
+      getAddedClients(): void {
+        if (!store.storage()) return;
+        const clients = store.storage().getSelectedClients() as Client[];
+        patchState(store, () => ({
+          addedClients: clients ?? [],
+        }));
+      },
+      addClient(client: Client): void {
+        const current = store.addedClients();
+        current.push(client);
+        const updated = Array.from(new Set(current));
+        patchState(store, () => ({
+          addedClients: updated,
+        }));
+        if (!store.storage()) return;
+        store.storage().setSelectedClients(updated);
       },
       createClient(client: Partial<Client>): void {
         clientService.create(client).subscribe({
@@ -113,7 +132,10 @@ export const ClientsStore = signalStore(
   withHooks({
     onInit(store) {
       store.fetchStorageService().subscribe({
-        next: () => store.getClients(),
+        next: () => {
+          store.getClients();
+          store.getAddedClients();
+        },
         error: (err) => console.log(`Error: ${err}`),
       });
     },

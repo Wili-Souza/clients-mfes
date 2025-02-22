@@ -23,6 +23,7 @@
         [companyValuation]="client.companyValuation"
         (remove)="onDeleteClient(client)"
         (edit)="onEditClient(client)"
+        (add)="store.addClient(client)"
       ></ds-card>
       }
     </div>
