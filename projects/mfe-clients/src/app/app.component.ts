@@ -80,6 +80,7 @@ export class AppComponent implements OnInit {
   }
 
   onEditClient(client: Client): void {
+    this.store.selectClient(client);
     this.clientForm.patchValue(client);
     this.editClientModalActive = true;
   }
