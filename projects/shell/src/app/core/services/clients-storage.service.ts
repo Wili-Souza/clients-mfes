@@ -58,7 +58,7 @@ export class ClientsStorageService implements ClientsStorageServiceI {
   }
 
   private reset(key: string): void {
-    localStorage.removeItem(key);
+    localStorage.removeItem(`${this.prefix}-${key}`);
   }
 
   private get(key: string): string | null {
