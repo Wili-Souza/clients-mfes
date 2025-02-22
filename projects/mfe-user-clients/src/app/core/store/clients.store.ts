@@ -12,11 +12,13 @@ import { from, Observable, tap } from 'rxjs';
 import { Client } from '../../shared/models/client';
 
 type ClientsState = {
+  userName: string | undefined;
   clients: Client[];
   storage: any | undefined;
 };
 
 const initialState: ClientsState = {
+  userName: undefined,
   clients: [],
   storage: undefined,
 };
@@ -29,6 +31,13 @@ export const ClientsStore = signalStore(
   withState(() => inject(CLIENTS_STATE)),
 
   withMethods((store, injector = inject(Injector)) => ({
+    getUserName(): void {
+      if (!store.storage()) return;
+      const userName = store.storage().getUserName();
+      patchState(store, () => ({
+        userName: userName ?? undefined,
+      }));
+    },
     getClients(): void {
       if (!store.storage()) return;
       const clients = store.storage().getSelectedClients() as Client[];
@@ -50,6 +59,12 @@ export const ClientsStore = signalStore(
       store.storage().resetSelectedClients();
       this.getClients();
     },
+    logout(): void {
+      patchState(store, () => ({ userName: undefined }));
+      if (store.storage()) {
+        store.storage().resetUserName();
+      }
+    },
     fetchStorageService(): Observable<any> {
       return from(
         loadRemoteModule({
@@ -70,6 +85,7 @@ export const ClientsStore = signalStore(
       store.fetchStorageService().subscribe({
         next: () => {
           store.getClients();
+          store.getUserName();
         },
         error: (err) => console.log(`Error: ${err}`),
       });
