@@ -7,7 +7,11 @@
       </div>
       <div class="section">
         Clientes por página:
-        <input [formControl]="limitControl" type="text" />
+        <ds-select
+          [value]="store.pagination().limit"
+          [options]="pageLimitOptions"
+          (selection)="onPageLimitSelected($event)"
+        ></ds-select>
       </div>
     </div>
     <div class="list">

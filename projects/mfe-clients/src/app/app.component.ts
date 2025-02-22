@@ -14,10 +14,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { ClientsStore } from './core/store/clients.store';
 import { Client } from './shared/models/client';
+import { PAGE_LIMIT_OPTIONS } from './core/core.constants';
 
 @Component({
   selector: 'app-root',
@@ -38,12 +38,22 @@ export class AppComponent implements OnInit {
     companyValuation: new FormControl<number>(0, Validators.required),
   });
 
+  protected readonly pageLimitOptions = PAGE_LIMIT_OPTIONS.map((op) => ({
+    label: String(op),
+    value: op,
+  }));
+
   protected readonly limitControl = new FormControl(
     this.store.pagination().limit
   );
 
   ngOnInit(): void {
     this.loadDsComponents();
+  }
+
+  onPageLimitSelected(event: any): void {
+    const value = event.detail as number;
+    this.store.setItemPerPage(value);
   }
 
   onCreateClient(): void {
@@ -69,6 +79,7 @@ export class AppComponent implements OnInit {
       ['CardComponent', 'ds-card'],
       ['FieldComponent', 'ds-field'],
       ['ModalContainerComponent', 'ds-modal-container'],
+      ['SelectComponent', 'ds-select'],
     ];
 
     for (let [name, tag] of elements) {
