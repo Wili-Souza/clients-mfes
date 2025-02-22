@@ -17,4 +17,5 @@ export class ButtonComponent {
   @Input() type: ButtonType = 'solid';
   @Input() color: ButtonColor = 'orange';
   @Input() size: ButtonSize = 'medium';
+  @Input() disabled: boolean = false;
 }
