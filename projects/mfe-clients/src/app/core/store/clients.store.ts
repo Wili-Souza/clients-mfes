@@ -19,6 +19,7 @@ type ClientsState = {
   storage: any | undefined;
   pagination: {
     limit: number;
+    totalPages: number;
     page: number;
   };
 };
@@ -29,6 +30,7 @@ const initialState: ClientsState = {
   clients: [],
   pagination: {
     limit: 16,
+    totalPages: 0,
     page: 1,
   },
 };
@@ -49,7 +51,11 @@ export const ClientsStore = signalStore(
       getClients(): void {
         const { page, limit } = store.pagination();
         clientService.getAll(page, limit).subscribe({
-          next: (clients) => patchState(store, () => ({ clients })),
+          next: ({ clients, totalPages }) =>
+            patchState(store, () => ({
+              clients,
+              pagination: { ...store.pagination(), totalPages },
+            })),
         });
       },
       createClient(client: Partial<Client>): void {

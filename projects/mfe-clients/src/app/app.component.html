@@ -31,6 +31,12 @@
       type="outline"
       >Criar cliente</ds-button
     >
+    <ds-paginator
+      class="paginator"
+      [currentPage]="store.pagination().page"
+      [totalPages]="store.pagination().totalPages"
+      (pageChange)="onPageSelected($event)"
+    ></ds-paginator>
   </div>
 </div>
 

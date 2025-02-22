@@ -7,6 +7,12 @@ export interface ClientResponseDTO {
   updatedAt?: Date;
 }
 
+export interface ClientPaginationResponseDTO {
+  clients: ClientResponseDTO[];
+  totalPages: number;
+  currentPage: number;
+}
+
 export interface ClientResquestDTO {
   name: string;
   salary: number;

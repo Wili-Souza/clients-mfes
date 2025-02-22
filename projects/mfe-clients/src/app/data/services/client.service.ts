@@ -4,7 +4,11 @@ import { map, Observable } from 'rxjs';
 
 import { Client } from '../../shared/models/client';
 import { ClientMapper } from '../mappers/client.mapper';
-import { ClientResponseDTO, ClientResquestDTO } from '../dto/client.dto';
+import {
+  ClientPaginationResponseDTO,
+  ClientResquestDTO,
+} from '../dto/client.dto';
+import { ClientPagination } from '../../shared/models/client-pagination';
 
 @Injectable({
   providedIn: 'root',
@@ -14,15 +18,12 @@ export class ClientService {
 
   private readonly http = inject(HttpClient);
 
-  getAll(page: number, limit: number): Observable<Client[]> {
+  getAll(page: number, limit: number): Observable<ClientPagination> {
     const url = `${this.baseUrl}/users`;
     const params = { page, limit };
     return this.http
-      .get<{ clients: ClientResponseDTO[] }>(url, { params })
-      .pipe(
-        map(({ clients }) => clients),
-        map((users) => users.map((user) => ClientMapper.toModel(user)))
-      );
+      .get<ClientPaginationResponseDTO>(url, { params })
+      .pipe(map((pagination) => ClientMapper.paginationToModel(pagination)));
   }
 
   create(client: Partial<Client>): Observable<void> {

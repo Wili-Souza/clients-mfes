@@ -1,5 +1,10 @@
 import { Client } from '../../shared/models/client';
-import { ClientResponseDTO, ClientResquestDTO } from '../dto/client.dto';
+import { ClientPagination } from '../../shared/models/client-pagination';
+import {
+  ClientPaginationResponseDTO,
+  ClientResponseDTO,
+  ClientResquestDTO,
+} from '../dto/client.dto';
 
 export class ClientMapper {
   public static toModel(clientDto: ClientResponseDTO): Client {
@@ -17,5 +22,16 @@ export class ClientMapper {
       salary: user.salary,
       companyValuation: user.companyValuation,
     } as ClientResquestDTO;
+  }
+
+  public static paginationToModel(
+    clientDto: ClientPaginationResponseDTO
+  ): ClientPagination {
+    return {
+      clients: clientDto.clients.map((c) => this.toModel(c)),
+
+      totalPages: clientDto.totalPages,
+      currentPage: clientDto.currentPage,
+    } as ClientPagination;
   }
 }

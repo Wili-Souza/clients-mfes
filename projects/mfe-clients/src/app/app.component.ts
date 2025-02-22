@@ -56,6 +56,11 @@ export class AppComponent implements OnInit {
     this.store.setItemPerPage(value);
   }
 
+  onPageSelected(event: any): void {
+    const value = event.detail as number;
+    this.store.setPage(value);
+  }
+
   onCreateClient(): void {
     this.addClientModalActive = true;
   }
@@ -80,6 +85,7 @@ export class AppComponent implements OnInit {
       ['FieldComponent', 'ds-field'],
       ['ModalContainerComponent', 'ds-modal-container'],
       ['SelectComponent', 'ds-select'],
+      ['PaginatorComponent', 'ds-paginator'],
     ];
 
     for (let [name, tag] of elements) {
