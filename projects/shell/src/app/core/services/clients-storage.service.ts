@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Client } from '../../../shared/models/client';
+import { Client } from '../../shared/models/client';
 
 export interface ClientsStorageServiceI {
   setUserName: (name: string) => void;
