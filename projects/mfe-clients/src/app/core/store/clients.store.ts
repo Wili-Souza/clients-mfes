@@ -1,8 +1,7 @@
-import { computed, inject, InjectionToken, Injector } from '@angular/core';
+import { inject, InjectionToken, Injector } from '@angular/core';
 import {
   patchState,
   signalStore,
-  withComputed,
   withHooks,
   withMethods,
   withState,
@@ -63,6 +62,18 @@ export const ClientsStore = signalStore(
           next: () => this.getClients(),
         });
       },
+      deleteSelectedClient(): void {
+        if (store.selectedClient()) {
+          clientService.delete(store.selectedClient()!.id).subscribe({
+            next: () => {
+              patchState(store, () => ({
+                selectedClient: undefined,
+              }));
+              this.getClients();
+            },
+          });
+        }
+      },
       setItemPerPage(limit: number): void {
         patchState(store, () => ({
           pagination: { ...store.pagination(), limit },
@@ -74,6 +85,9 @@ export const ClientsStore = signalStore(
           pagination: { ...store.pagination(), page },
         }));
         this.getClients();
+      },
+      selectClient(selectedClient: Client): void {
+        patchState(store, () => ({ selectedClient }));
       },
       fetchStorageService(): Observable<any> {
         return from(

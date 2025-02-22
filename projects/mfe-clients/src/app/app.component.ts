@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
   private readonly injector = inject(Injector);
 
   protected addClientModalActive: boolean = false;
+  protected deleteClientModalActive: boolean = false;
   protected readonly clientForm = new FormGroup({
     name: new FormControl<string>('', Validators.required),
     salary: new FormControl<number>(0, Validators.required),
@@ -75,7 +76,20 @@ export class AppComponent implements OnInit {
     const client = this.clientForm.value as Partial<Client>;
     this.store.createClient(client);
     this.onCloseAddClientModal();
-    this.addClientModalActive = false;
+  }
+
+  onDeleteClient(client: Client): void {
+    this.store.selectClient(client);
+    this.deleteClientModalActive = true;
+  }
+
+  onCloseDeleteClientModal(): void {
+    this.deleteClientModalActive = false;
+  }
+
+  onSubmitDeleteClient(): void {
+    this.store.deleteSelectedClient();
+    this.onCloseDeleteClientModal();
   }
 
   private async loadDsComponents() {

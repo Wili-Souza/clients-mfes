@@ -56,14 +56,21 @@
   }
 }
 
-.form {
+.form, .confirmation-card {
   display: flex;
   flex-direction: column;
-  gap: 16px;
 
   h4 {
     margin: 0;
   }
+
+  .bold {
+    font-weight: 700;
+  }
+}
+
+.form {
+  gap: 16px;
 
   .fields {
     display: flex;

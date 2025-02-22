@@ -21,6 +21,7 @@
         [name]="client.name"
         [salary]="client.salary"
         [companyValuation]="client.companyValuation"
+        (remove)="onDeleteClient(client)"
       ></ds-card>
       }
     </div>
@@ -39,6 +40,24 @@
     ></ds-paginator>
   </div>
 </div>
+
+<ds-modal-container
+  *ngIf="deleteClientModalActive && store.selectedClient()"
+  (close)="onCloseDeleteClientModal()"
+>
+  <div class="confirmation-card">
+    <h4 class="title">Excluir cliente</h4>
+    <p>
+      Você está prestes a excluir o cliente:
+      <span class="bold">{{ store.selectedClient()?.name }}</span>
+    </p>
+    <ds-button
+      (click)="onSubmitDeleteClient()"
+      size="medium"
+      >Excluir cliente</ds-button
+    >
+  </div>
+</ds-modal-container>
 
 <ds-modal-container
   *ngIf="addClientModalActive"
