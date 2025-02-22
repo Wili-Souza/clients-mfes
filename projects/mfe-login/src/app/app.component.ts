@@ -43,6 +43,8 @@ export class AppComponent implements OnInit {
     ];
 
     for (let [name, tag] of elements) {
+      if (customElements.get(tag)) continue;
+
       const m = await loadRemoteModule({
         remoteName: 'mfeDs',
         exposedModule: `./${name}`,

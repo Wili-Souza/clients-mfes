@@ -10,6 +10,13 @@ export const routes: Routes = [
         .catch((err) => console.log(err)),
   },
   {
+    path: 'clients',
+    loadComponent: () =>
+      loadRemoteModule('mfeClients', './Component')
+        .then((m) => m.AppComponent)
+        .catch((err) => console.log(err)),
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: 'login'
