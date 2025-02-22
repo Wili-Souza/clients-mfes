@@ -19,4 +19,43 @@
     ></ds-card>
     }
   </div>
+  <ds-button
+    class="button"
+    (click)="onCreateClient()"
+    size="medium"
+    type="outline"
+    >Criar cliente</ds-button
+  >
 </div>
+
+<ds-modal-container
+  *ngIf="addClientModalActive"
+  (close)="onCloseAddClientModal()"
+>
+  <div class="form">
+    <h4 class="title">Criar cliente</h4>
+    <div class="fields">
+      <ds-field
+        [control]="clientForm.controls.name"
+        placeholder="Digite o nome:"
+        size="medium"
+      ></ds-field>
+      <ds-field
+        [control]="clientForm.controls.salary"
+        placeholder="Digite o salário:"
+        size="medium"
+      ></ds-field>
+      <ds-field
+        [control]="clientForm.controls.companyValuation"
+        placeholder="Digite o valor da empresa:"
+        size="medium"
+      ></ds-field>
+    </div>
+    <ds-button
+      (click)="onSubmitCreateClient()"
+      [disabled]="clientForm.invalid"
+      size="medium"
+      >Criar cliente</ds-button
+    >
+  </div>
+</ds-modal-container>

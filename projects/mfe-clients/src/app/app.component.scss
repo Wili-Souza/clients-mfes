@@ -29,4 +29,24 @@
       flex: 1 1 calc(25% - 20px);
     }
   }
+
+  .button {
+    margin-top: 12px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  h4 {
+    margin: 0;
+  }
+
+  .fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 }

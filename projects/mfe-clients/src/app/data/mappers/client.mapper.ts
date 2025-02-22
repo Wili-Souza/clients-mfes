@@ -1,8 +1,8 @@
-import { Client } from "../../shared/models/client";
-import { ClientDTO } from "../dto/client.dto";
+import { Client } from '../../shared/models/client';
+import { ClientResponseDTO, ClientResquestDTO } from '../dto/client.dto';
 
 export class ClientMapper {
-  public static toModel(clientDto: ClientDTO): Client {
+  public static toModel(clientDto: ClientResponseDTO): Client {
     return {
       id: clientDto.id,
       name: clientDto.name,
@@ -11,12 +11,11 @@ export class ClientMapper {
     } as Client;
   }
 
-  public static toDto(user: Client): ClientDTO {
+  public static toDto(user: Partial<Client>): ClientResquestDTO {
     return {
-      id: user.id,
       name: user.name,
       salary: user.salary,
       companyValuation: user.companyValuation,
-    } as ClientDTO;
+    } as ClientResquestDTO;
   }
 }

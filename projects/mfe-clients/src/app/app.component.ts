@@ -8,9 +8,16 @@ import {
 import { CommonModule } from '@angular/common';
 import { loadRemoteModule } from '@angular-architects/native-federation';
 import { createCustomElement } from '@angular/elements';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { ClientsStore } from './core/store/clients.store';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Client } from './shared/models/client';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +31,13 @@ export class AppComponent implements OnInit {
   protected readonly store = inject(ClientsStore);
   private readonly injector = inject(Injector);
 
+  protected addClientModalActive: boolean = false;
+  protected readonly clientForm = new FormGroup({
+    name: new FormControl<string>('', Validators.required),
+    salary: new FormControl<number>(0, Validators.required),
+    companyValuation: new FormControl<number>(0, Validators.required),
+  });
+
   protected readonly limitControl = new FormControl(
     this.store.pagination().limit
   );
@@ -32,10 +46,29 @@ export class AppComponent implements OnInit {
     this.loadDsComponents();
   }
 
+  onCreateClient(): void {
+    this.addClientModalActive = true;
+  }
+
+  onCloseAddClientModal(): void {
+    this.clientForm.reset({ name: '', salary: 0, companyValuation: 0 });
+    this.addClientModalActive = false;
+  }
+
+  onSubmitCreateClient(): void {
+    if (this.clientForm.invalid) return;
+    const client = this.clientForm.value as Partial<Client>;
+    this.store.createClient(client);
+    this.onCloseAddClientModal();
+    this.addClientModalActive = false;
+  }
+
   private async loadDsComponents() {
     const elements: any[] = [
       ['ButtonComponent', 'ds-button'],
       ['CardComponent', 'ds-card'],
+      ['FieldComponent', 'ds-field'],
+      ['ModalContainerComponent', 'ds-modal-container'],
     ];
 
     for (let [name, tag] of elements) {
