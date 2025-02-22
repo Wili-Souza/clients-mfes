@@ -1,0 +1,87 @@
+@use "../../styles/colors.scss" as *;
+
+.side-bar {
+  width: 70vw;
+  max-width: 15rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 0 12px 0 0;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.068);
+  transition: 0.3s transform;
+  transform: translateX(-100%);
+  overflow: hidden;
+
+  &.active {
+    transform: translateX(0);
+  }
+
+  .header-container {
+    width: 100%;
+    height: 8rem;
+    position: relative;
+
+    .header-background {
+      padding: 40px 80px;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(8px);
+    }
+
+    .logo {
+      width: 100px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .content {
+    flex: 1;
+    background-color: #ffffff;
+  }
+
+  .options {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 20px;
+
+    .option {
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      font-weight: 700;
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      &.active {
+        color: $primary-color;
+        border-right: 2px solid $primary-color;
+
+        .icon-wrapper {
+          width: 0.8rem;
+        }
+      }
+
+      .icon-wrapper {
+        width: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

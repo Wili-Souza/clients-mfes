@@ -1,0 +1,44 @@
+<div class="side-bar" [class.active]="active" (clickOutside)="active = false">
+  <div class="header-container">
+    <div class="header-background"></div>
+    <img
+      src="http://localhost:4201/images/logo.png"
+      alt="hamburguer menu icon"
+      class="logo"
+    />
+  </div>
+  <div class="content">
+    <ul class="options">
+      <div class="option">
+        <div class="icon-wrapper">
+          <img
+            src="http://localhost:4201/images/house.png"
+            alt="home icon"
+            class="logo"
+          />
+        </div>
+        Home
+      </div>
+      <div class="option active">
+        <div class="icon-wrapper">
+          <img
+            src="http://localhost:4201/images/user.png"
+            alt="user icon"
+            class="logo"
+          />
+        </div>
+        Clientes
+      </div>
+      <div class="option">
+        <div class="icon-wrapper">
+          <img
+            src="http://localhost:4201/images/square.png"
+            alt="products icon"
+            class="logo"
+          />
+        </div>
+        Produtos
+      </div>
+    </ul>
+  </div>
+</div>

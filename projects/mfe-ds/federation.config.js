@@ -22,6 +22,8 @@ module.exports = withNativeFederation({
       "projects/mfe-ds/src/app/components/paginator/paginator.component.ts",
     "./NavBarComponent":
       "projects/mfe-ds/src/app/components/nav-bar/nav-bar.component.ts",
+    "./SideBarComponent":
+      "projects/mfe-ds/src/app/components/side-bar/side-bar.component.ts",
   },
 
   shared: {

@@ -1,19 +1,11 @@
 import { Component } from '@angular/core';
-import { CardComponent } from './components/card/card.component';
-import { ModalContainerComponent } from './components/modal-container/modal-container.component';
-import { ButtonComponent } from './components/button/button.component';
-import { FieldComponent } from './components/field/field.component';
-import { SelectComponent } from './components/select/select.component';
-import { PaginatorComponent } from './components/paginator/paginator.component';
+
+import { SideBarComponent } from './components/side-bar/side-bar.component';
 
 @Component({
   selector: 'app-root',
   imports: [
-    CardComponent,
-    FieldComponent,
-    ButtonComponent,
-    SelectComponent,
-    PaginatorComponent,
+    SideBarComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
