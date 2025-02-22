@@ -45,6 +45,10 @@ export const ClientsStore = signalStore(
       if (!store.storage()) return;
       store.storage().setSelectedClients(clients);
     },
+    resetClients(): void {
+      if (!store.storage()) return;
+      store.storage().resetSelectedClients();
+    },
     fetchStorageService(): Observable<any> {
       return from(
         loadRemoteModule({
