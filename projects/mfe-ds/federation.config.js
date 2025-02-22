@@ -14,6 +14,8 @@ module.exports = withNativeFederation({
       "projects/mfe-ds/src/app/components/field/field.component.ts",
     "./CardComponent":
       "projects/mfe-ds/src/app/components/card/card.component.ts",
+    "./ModalContainerComponent":
+      "projects/mfe-ds/src/app/components/modal-container/modal-container.component.ts",
   },
 
   shared: {
@@ -22,12 +24,12 @@ module.exports = withNativeFederation({
       strictVersion: true,
       requiredVersion: "auto",
     }),
-    '@angular/common/locales/pt': {
-        packageInfo: {
-            entryPoint: '@angular/common/locales/pt',
-            esm: true,
-        },
-    }
+    "@angular/common/locales/pt": {
+      packageInfo: {
+        entryPoint: "@angular/common/locales/pt",
+        esm: true,
+      },
+    },
   },
 
   skip: [
