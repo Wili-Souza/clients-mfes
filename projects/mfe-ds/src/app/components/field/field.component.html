@@ -1,6 +1,15 @@
+@switch(type){ @case('number') {
+<input
+  appCurrencyMask
+  [value]="control.value | currency : 'R$' : 'code' : '1.0-2'"
+  [control]="control"
+  class="field {{ size }}"
+  [placeholder]="placeholder"
+/>
+} @default {
 <input
   [formControl]="control"
   class="field {{ size }}"
   [placeholder]="placeholder"
-  [type]="type"
 />
+} }
