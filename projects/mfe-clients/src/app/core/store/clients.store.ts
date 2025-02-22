@@ -62,17 +62,22 @@ export const ClientsStore = signalStore(
           next: () => this.getClients(),
         });
       },
+      editClient(client: Partial<Client>): void {
+        if (!store.selectedClient()) return;
+        clientService.edit(store.selectedClient()!.id, client).subscribe({
+          next: () => this.getClients(),
+        });
+      },
       deleteSelectedClient(): void {
-        if (store.selectedClient()) {
-          clientService.delete(store.selectedClient()!.id).subscribe({
-            next: () => {
-              patchState(store, () => ({
-                selectedClient: undefined,
-              }));
-              this.getClients();
-            },
-          });
-        }
+        if (!store.selectedClient()) return;
+        clientService.delete(store.selectedClient()!.id).subscribe({
+          next: () => {
+            patchState(store, () => ({
+              selectedClient: undefined,
+            }));
+            this.getClients();
+          },
+        });
       },
       setItemPerPage(limit: number): void {
         patchState(store, () => ({

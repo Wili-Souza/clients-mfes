@@ -22,6 +22,7 @@
         [salary]="client.salary"
         [companyValuation]="client.companyValuation"
         (remove)="onDeleteClient(client)"
+        (edit)="onEditClient(client)"
       ></ds-card>
       }
     </div>
@@ -51,9 +52,7 @@
       Você está prestes a excluir o cliente:
       <span class="bold">{{ store.selectedClient()?.name }}</span>
     </p>
-    <ds-button
-      (click)="onSubmitDeleteClient()"
-      size="medium"
+    <ds-button (click)="onSubmitDeleteClient()" size="medium"
       >Excluir cliente</ds-button
     >
   </div>
@@ -75,11 +74,13 @@
         [control]="clientForm.controls.salary"
         placeholder="Digite o salário:"
         size="medium"
+        type="number"
       ></ds-field>
       <ds-field
         [control]="clientForm.controls.companyValuation"
         placeholder="Digite o valor da empresa:"
         size="medium"
+        type="number"
       ></ds-field>
     </div>
     <ds-button
@@ -87,6 +88,40 @@
       [disabled]="clientForm.invalid"
       size="medium"
       >Criar cliente</ds-button
+    >
+  </div>
+</ds-modal-container>
+
+<ds-modal-container
+  *ngIf="editClientModalActive"
+  (close)="onCloseEditClientModal()"
+>
+  <div class="form">
+    <h4 class="title">Editar cliente</h4>
+    <div class="fields">
+      <ds-field
+        [control]="clientForm.controls.name"
+        placeholder="Digite o nome:"
+        size="medium"
+      ></ds-field>
+      <ds-field
+        [control]="clientForm.controls.salary"
+        type="number"
+        placeholder="Digite o salário:"
+        size="medium"
+      ></ds-field>
+      <ds-field
+        [control]="clientForm.controls.companyValuation"
+        type="number"
+        placeholder="Digite o valor da empresa:"
+        size="medium"
+      ></ds-field>
+    </div>
+    <ds-button
+      (click)="onSubmitEditClient()"
+      [disabled]="clientForm.invalid"
+      size="medium"
+      >Editar cliente</ds-button
     >
   </div>
 </ds-modal-container>

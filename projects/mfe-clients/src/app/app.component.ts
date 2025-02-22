@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
 
   protected addClientModalActive: boolean = false;
   protected deleteClientModalActive: boolean = false;
+  protected editClientModalActive: boolean = false;
   protected readonly clientForm = new FormGroup({
     name: new FormControl<string>('', Validators.required),
     salary: new FormControl<number>(0, Validators.required),
@@ -76,6 +77,23 @@ export class AppComponent implements OnInit {
     const client = this.clientForm.value as Partial<Client>;
     this.store.createClient(client);
     this.onCloseAddClientModal();
+  }
+
+  onEditClient(client: Client): void {
+    this.clientForm.patchValue(client);
+    this.editClientModalActive = true;
+  }
+
+  onCloseEditClientModal(): void {
+    this.clientForm.reset({ name: '', salary: 0, companyValuation: 0 });
+    this.editClientModalActive = false;
+  }
+
+  onSubmitEditClient(): void {
+    if (this.clientForm.invalid) return;
+    const client = this.clientForm.value as Partial<Client>;
+    this.store.editClient(client);
+    this.onCloseEditClientModal();
   }
 
   onDeleteClient(client: Client): void {

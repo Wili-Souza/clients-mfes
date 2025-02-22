@@ -32,6 +32,12 @@ export class ClientService {
     return this.http.post<void>(url, clientDTO);
   }
 
+  edit(id: number, client: Partial<Client>): Observable<void> {
+    const url = `${this.baseUrl}/users/${id}`;
+    const clientDTO: ClientResquestDTO = ClientMapper.toDto(client);
+    return this.http.patch<void>(url, clientDTO);
+  }
+
   delete(id: number): Observable<void> {
     const url = `${this.baseUrl}/users/${id}`;
     return this.http.delete<void>(url);
