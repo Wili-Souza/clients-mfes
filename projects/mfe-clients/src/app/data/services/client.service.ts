@@ -51,6 +51,6 @@ export class ClientService {
 
   delete(id: number): Observable<void> {
     const url = `${this.baseUrl}/users/${id}`;
-    return this.http.delete<void>(url);
+    return this.http.delete<void>(url, { responseType: 'text' as 'json' });
   }
 }
