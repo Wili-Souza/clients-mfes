@@ -1,4 +1,9 @@
-<div class="side-bar" [class.active]="active" (clickOutside)="active = false">
+<div
+  class="side-bar"
+  [class.active]="active"
+  (clickOutside)="onClickOutside()"
+  exceptionClassName="side-bar-outside-exception"
+>
   <div class="header-container">
     <div class="header-background"></div>
     <img

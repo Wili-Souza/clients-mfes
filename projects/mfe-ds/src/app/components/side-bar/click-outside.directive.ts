@@ -5,6 +5,7 @@ import {
   EventEmitter,
   HostListener,
   inject,
+  Input,
 } from '@angular/core';
 
 @Directive({
@@ -12,6 +13,8 @@ import {
 })
 export class ClickOutsideDirective {
   private elementRef = inject(ElementRef);
+
+  @Input() exceptionClassName?: string;
 
   @Output()
   public clickOutside = new EventEmitter<MouseEvent>();
@@ -25,7 +28,11 @@ export class ClickOutsideDirective {
 
     const clickedInside = this.elementRef.nativeElement.contains(targetElement);
 
-    if (!clickedInside) {
+    if (
+      !clickedInside &&
+      (!this.exceptionClassName ||
+        !elementClass.includes(this.exceptionClassName))
+    ) {
       this.clickOutside.emit(event);
     }
   }

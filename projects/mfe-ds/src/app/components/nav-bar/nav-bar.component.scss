@@ -1,6 +1,7 @@
 @use "../../styles/colors.scss" as *;
 
 .nav-bar {
+  position: relative;
   width: 100vw;
   padding: 20px 120px;
   display: flex;

@@ -10,6 +10,7 @@ import { Router, RouterModule } from '@angular/router';
 export class NavBarComponent {
   @Input() userName?: string;
   @Output() readonly logout = new EventEmitter<void>();
+  @Output() readonly openMenu = new EventEmitter<void>();
 
   protected readonly router = inject(Router);
 }
