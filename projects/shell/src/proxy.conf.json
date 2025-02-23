@@ -1,0 +1,11 @@
+{
+  "/api/**": {
+    "target": "https://boasorte.teddybackoffice.com.br",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

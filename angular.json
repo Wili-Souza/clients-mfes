@@ -137,7 +137,8 @@
           },
           "defaultConfiguration": "development",
           "options": {
-            "port": 4200
+            "port": 4200,
+            "proxyConfig": "projects/shell/src/proxy.conf.json"
           }
         }
       }
@@ -433,9 +434,7 @@
       "architect": {
         "build": {
           "builder": "@angular-architects/native-federation:build",
-          "options": {
-            "proxyConfig": "projects/mfe-clients/src/proxy.conf.json"
-          },
+          "options": {},
           "configurations": {
             "production": {
               "target": "mfe-clients:esbuild:production"
@@ -556,7 +555,8 @@
           },
           "defaultConfiguration": "development",
           "options": {
-            "port": 4203
+            "port": 4203,
+            "proxyConfig": "projects/mfe-clients/src/proxy.conf.json"
           }
         }
       }
