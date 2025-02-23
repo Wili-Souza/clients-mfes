@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
   private readonly injector = inject(Injector);
   private readonly router = inject(Router);
 
+  protected isSideBarActive: boolean = false;
   protected addClientModalActive: boolean = false;
   protected deleteClientModalActive: boolean = false;
   protected editClientModalActive: boolean = false;
@@ -53,6 +54,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadDsComponents();
+  }
+
+  onOpenSideBar(): void {
+    this.isSideBarActive = true;
+  }
+
+  onSideBarActiveChange(event: any): void {
+    const value = event.detail;
+    this.isSideBarActive = value;
   }
 
   onLogout(): void {
@@ -127,6 +137,7 @@ export class AppComponent implements OnInit {
       ['SelectComponent', 'ds-select'],
       ['PaginatorComponent', 'ds-paginator'],
       ['NavBarComponent', 'ds-nav-bar'],
+      ['SideBarComponent', 'ds-side-bar'],
     ];
 
     for (let [name, tag] of elements) {

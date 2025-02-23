@@ -54,7 +54,6 @@ export const ClientsStore = signalStore(
       getUserName(): void {
         if (!store.storage()) return;
         const userName = store.storage().getUserName();
-        console.log({ userName });
         patchState(store, () => ({
           userName: userName ?? undefined,
         }));
