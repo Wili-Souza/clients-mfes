@@ -1,5 +1,10 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, Injector } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  inject,
+  Injector,
+} from '@angular/core';
+import { Router } from '@angular/router';
 import { loadRemoteModule } from '@angular-architects/native-federation';
 import { createCustomElement } from '@angular/elements';
 
@@ -7,19 +12,25 @@ import { ClientsStore } from './core/store/clients.store';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [],
   providers: [ClientsStore],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppComponent {
   private readonly router = inject(Router);
   protected readonly store = inject(ClientsStore);
   protected readonly injector = inject(Injector);
 
+  protected isSideBarActive: boolean = false;
+
   constructor() {
     this.loadDsComponents();
+  }
+
+  onOpenSideBar(): void {
+    this.isSideBarActive = true;
   }
 
   onLogout(): void {
@@ -27,11 +38,17 @@ export class AppComponent {
     this.router.navigate(['/login']);
   }
 
+  onSideBarActiveChange(event: any): void {
+    const value = event.detail;
+    this.isSideBarActive = value;
+  }
+
   private async loadDsComponents() {
     const elements: any[] = [
       ['ButtonComponent', 'ds-button'],
       ['CardComponent', 'ds-card'],
       ['NavBarComponent', 'ds-nav-bar'],
+      ['SideBarComponent', 'ds-side-bar'],
     ];
 
     for (let [name, tag] of elements) {
