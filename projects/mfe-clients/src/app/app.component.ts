@@ -19,6 +19,7 @@ import { ClientsStore } from './core/store/clients.store';
 import { Client } from './shared/models/client';
 import { PAGE_LIMIT_OPTIONS } from './core/core.constants';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit {
   protected readonly store = inject(ClientsStore);
   private readonly injector = inject(Injector);
   private readonly router = inject(Router);
+  private readonly http = inject(HttpClient);
 
   protected isSideBarActive: boolean = false;
   protected addClientModalActive: boolean = false;
@@ -51,6 +53,10 @@ export class AppComponent implements OnInit {
   protected readonly limitControl = new FormControl(
     this.store.pagination().limit
   );
+
+  constructor() {
+    this.loadFontFromDesignSystem();
+  }
 
   ngOnInit(): void {
     this.loadDsComponents();
@@ -154,5 +160,28 @@ export class AppComponent implements OnInit {
 
       customElements.define(tag, element);
     }
+  }
+
+  loadFontFromDesignSystem(): void {
+    this.http.get('config.json').subscribe({
+      next: (data: any) => {
+        const assetsUrl = data.assetsUrl as string;
+        const fontStyle = document.createElement('style');
+        fontStyle.appendChild(
+          document.createTextNode(
+            `@font-face {
+              font-family: 'Inter';
+              src: url('"${assetsUrl}'/fonts/Inter-VariableFont_opsz,wght.ttf") format("truetype");\
+              font-weight: 100 900;
+              font-style: normal;
+            }`
+          )
+        );
+        document.head.appendChild(fontStyle);
+      },
+      error: (error: Error) => {
+        console.log(error);
+      },
+    });
   }
 }
