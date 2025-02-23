@@ -1,4 +1,4 @@
 {
-  "shell": "https://clients-mfes-shell.vercel.app",
-  "mfeDs": "https://clients-mfes-ds.vercel.app"
+  "shell": "https://clients-mfes-shell.vercel.app/remoteEntry.json",
+  "mfeDs": "https://clients-mfes-ds.vercel.app/remoteEntry.json"
 }
