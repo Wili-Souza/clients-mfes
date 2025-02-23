@@ -1,4 +1,4 @@
 {
-  "assetsUrl": "https://clients-mfes-ds.vercel.app/remoteEntry.json",
+  "assetsUrl": "https://clients-mfes-ds.vercel.app",
   "baseUrl": "https://clients-mfes-shell.vercel.app/api"
 }
