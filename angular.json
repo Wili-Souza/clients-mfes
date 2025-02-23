@@ -433,7 +433,9 @@
       "architect": {
         "build": {
           "builder": "@angular-architects/native-federation:build",
-          "options": {},
+          "options": {
+            "proxyConfig": "projects/mfe-clients/src/proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "target": "mfe-clients:esbuild:production"
@@ -448,7 +450,6 @@
         "serve": {
           "builder": "@angular-architects/native-federation:build",
           "options": {
-            "proxyConfig": "projects/mfe-clients/src/proxy.conf.json",
             "target": "mfe-clients:serve-original:development",
             "rebuildDelay": 0,
             "dev": true,

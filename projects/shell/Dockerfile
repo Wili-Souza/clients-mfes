@@ -11,6 +11,9 @@ COPY projects/shell ./projects/shell
 RUN npm run build --project shell --verbose
 
 FROM nginx:1.23
+VOLUME /var/cache/nginx
+
+COPY ./config/nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=build /app/dist/shell/browser /usr/share/nginx/html
 

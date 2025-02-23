@@ -14,9 +14,20 @@ import { ClientPagination } from '../../shared/models/client-pagination';
   providedIn: 'root',
 })
 export class ClientService {
-  private readonly baseUrl = 'https://boasorte.teddybackoffice.com.br';
+  private baseUrl?: string;
 
   private readonly http = inject(HttpClient);
+
+  constructor() {
+    this.http.get('config.json').subscribe({
+      next: (data: any) => {
+        this.baseUrl = data.baseUrl as string;
+      },
+      error: (error: Error) => {
+        console.log(`Error loading configuration: `, error);
+      },
+    });
+  }
 
   getAll(page: number, limit: number): Observable<ClientPagination> {
     const url = `${this.baseUrl}/users`;

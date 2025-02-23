@@ -11,6 +11,9 @@ COPY projects/mfe-clients ./projects/mfe-clients
 RUN npm run build --project mfe-clients --verbose
 
 FROM nginx:1.23
+VOLUME /var/cache/nginx
+
+COPY ./config/nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=build /app/dist/mfe-clients/browser /usr/share/nginx/html
 

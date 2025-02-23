@@ -11,6 +11,9 @@ COPY projects/mfe-login ./projects/mfe-login
 RUN npm run build --project mfe-login --verbose
 
 FROM nginx:1.23
+VOLUME /var/cache/nginx
+
+COPY ./config/nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=build /app/dist/mfe-login/browser /usr/share/nginx/html
 
