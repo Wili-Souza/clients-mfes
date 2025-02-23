@@ -8,7 +8,8 @@ RUN npm install
 
 COPY projects/mfe-login ./projects/mfe-login
 
-RUN npm run build --project mfe-login --verbose
+RUN npm run build -- --project mfe-login --configuration=homologation
+# RUN npx ng run mfe-login:esbuild:homologation
 
 FROM nginx:1.23
 VOLUME /var/cache/nginx
