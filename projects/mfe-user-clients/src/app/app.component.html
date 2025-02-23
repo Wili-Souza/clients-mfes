@@ -4,11 +4,6 @@
   (openMenu)="onOpenSideBar()"
 ></ds-nav-bar>
 
-<ds-side-bar
-  [active]="isSideBarActive"
-  (activeChange)="onSideBarActiveChange($event)"
-></ds-side-bar>
-
 <div class="user-clients-page">
   <div class="content">
     <div class="list-header">
@@ -34,3 +29,8 @@
     >
   </div>
 </div>
+
+<ds-side-bar
+  [active]="isSideBarActive"
+  (activeChange)="onSideBarActiveChange($event)"
+></ds-side-bar>
