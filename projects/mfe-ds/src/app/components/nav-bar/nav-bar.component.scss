@@ -1,9 +1,11 @@
 @use "../../styles/colors.scss" as *;
+@use "../../styles/sizes.scss" as *;
 
 .nav-bar {
   position: relative;
   width: 100vw;
-  padding: 20px 120px;
+  padding: 20px max($header-padding, $header-min-padding) 20px
+    max(calc($header-padding - $header-menu-width - $header-gap), $header-min-padding);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -18,14 +20,12 @@
 
   .header,
   .navigation {
-    gap: 32px;
+    gap: $header-gap;
   }
 
   .header {
     .menu {
-      position: absolute;
-      left: 50px;
-      width: 1.7rem;
+      width: $header-menu-width;
       cursor: pointer;
       transition: 0.2s opacity;
 
@@ -70,6 +70,29 @@
 
     .bold {
       font-weight: 700;
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .nav-bar {
+    .user {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .nav-bar {
+    .header {
+      .menu {
+        left: auto;
+        position: relative;
+      }
+    }
+
+    .navigation {
+      display: none;
     }
   }
 }
