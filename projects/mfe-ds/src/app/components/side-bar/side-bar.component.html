@@ -7,7 +7,8 @@
   <div class="header-container">
     <div class="header-background"></div>
     <img
-      src="http://localhost:4201/images/logo.png"
+      *ngIf="assetsUrl"
+      src="{{ assetsUrl }}/images/logo.png"
       alt="hamburguer menu icon"
       class="logo"
     />
@@ -17,7 +18,8 @@
       <div class="option">
         <div class="icon-wrapper">
           <img
-            src="http://localhost:4201/images/house.png"
+            *ngIf="assetsUrl"
+            src="{{ assetsUrl }}/images/house.png"
             alt="home icon"
             class="logo"
           />
@@ -27,7 +29,8 @@
       <div class="option active">
         <div class="icon-wrapper">
           <img
-            src="http://localhost:4201/images/user.png"
+            *ngIf="assetsUrl"
+            src="{{ assetsUrl }}/images/user.png"
             alt="user icon"
             class="logo"
           />
@@ -37,7 +40,8 @@
       <div class="option">
         <div class="icon-wrapper">
           <img
-            src="http://localhost:4201/images/square.png"
+            *ngIf="assetsUrl"
+            src="{{ assetsUrl }}/images/square.png"
             alt="products icon"
             class="logo"
           />

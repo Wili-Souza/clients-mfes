@@ -2,7 +2,8 @@
   <div class="card">
     <div class="icon-wrapper" (click)="onClose()">
       <img
-        src="http://localhost:4201/images/times.png"
+        *ngIf="assetsUrl"
+        src="{{ assetsUrl }}/images/times.png"
         alt="times operator icon"
         class="icon"
       />

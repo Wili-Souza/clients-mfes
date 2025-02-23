@@ -1,0 +1,7 @@
+{
+	"shell": "http://localhost:4200/remoteEntry.json",
+	"mfeDs": "http://localhost:4201/remoteEntry.json",
+	"mfeLogin": "http://localhost:4202/remoteEntry.json",
+	"mfeClients": "http://localhost:4203/remoteEntry.json",
+	"mfeUserClients": "http://localhost:4204/remoteEntry.json"
+}

@@ -2,7 +2,8 @@
   <div class="input-container" (click)="onToggleOptions()">
     <input [value]="valueSelected" readonly class="input" />
     <img
-      src="http://localhost:4201/images/angle-down.png"
+      *ngIf="assetsUrl"
+      src="{{ assetsUrl }}/images/angle-down.png"
       alt="Arrow poiting down icon"
       class="icon"
     />

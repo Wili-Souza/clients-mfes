@@ -2,12 +2,14 @@
   <header class="header">
     <img
       (click)="openMenu.emit()"
-      src="http://localhost:4201/images/hamburguer-menu.png"
+      *ngIf="assetsUrl"
+      src="{{ assetsUrl }}/images/hamburguer-menu.png"
       alt="hamburguer menu icon"
       class="menu side-bar-outside-exception"
     />
     <img
-      src="http://localhost:4201/images/logo.png"
+    *ngIf="assetsUrl"
+      src="{{ assetsUrl }}/images/logo.png"
       alt="Teddy Open Finance logo"
       class="logo"
     />

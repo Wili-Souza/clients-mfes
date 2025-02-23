@@ -1,0 +1,19 @@
+FROM node:18-alpine AS build
+
+WORKDIR /app
+
+COPY /*.json ./
+
+RUN npm install
+
+COPY projects/mfe-user-clients ./projects/mfe-user-clients
+
+RUN npm run build --project mfe-user-clients --verbose
+
+FROM nginx:1.23
+
+COPY --from=build /app/dist/mfe-user-clients/browser /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
