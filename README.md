@@ -1,59 +1,62 @@
-# TeddyTest
+# Clients MFEs
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.8.
+## Executando
 
-## Development server
+Este repositório contém um projeto Angular estruturado com microfrontends (MFEs). Ele pode ser executado de três formas:
 
-To start a local development server, run:
+1. **Acessando via URL hospedada**
+2. **Rodando localmente sem Docker**
+3. **Rodando com Docker**
 
-```bash
-ng serve
-```
+### 1. Acessando via URL
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+A forma mais simples de testar a aplicação é acessando diretamente:
 
-## Code scaffolding
+🔗 [https://clients-mfes-shell.vercel.app/](https://clients-mfes-shell.vercel.app/)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Porém, é importante destacar há problemas de CORS na versão em deploy no vercel. Utilizando o Vercel rewrites é possível realizar requisições GET, mas o problema persistiu para outras requisições. Portanto, recomendo testar utilizando Docker.
 
-```bash
-ng generate component component-name
-```
+### 2. Rodando com Docker
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Para rodar o projeto via Docker, basta executar o docker compose do projeto:
 
-```bash
-ng generate --help
-```
+``` $ docker compose up --build ```
 
-## Building
+E acessar em: http://localhost:4200/
 
-To build the project run:
+As aplicações serão expostar nas seguintes portas:
 
-```bash
-ng build
-```
+1. **Shell** (aplicação principal): 4200
+2. **Design System** : 4201
+5. **Tela de entrada** : 4202
+3. **Tela de Clientes** : 4203
+4. **Tela de Clientes selecionados** : 4204
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+### 3. Rodando localmente sem Docker
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Para rodar o projeto localmente sem docker, siga os seguintes passos:
 
-```bash
-ng test
-```
+#### Pré-requisitos
 
-## Running end-to-end tests
+- **Node.js**: O projeto utiliza Angular 19, que requer uma versão compatível do Node.js (versão 18 ou superior).
 
-For end-to-end (e2e) testing, run:
+#### Instalando dependências
 
-```bash
-ng e2e
-```
+Na raiz do projeto, executar o comando de instalação das dependências:
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+``` $ npm install ```
 
-## Additional Resources
+#### Executando as aplicações
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Na raiz do projeto, executar o comando:
+
+``` $ npm run start:all ```
+
+Com isso, as aplicações serão levantadas nas seguintes endereços:
+
+1. **Shell** (aplicação principal): http://localhost:4200
+2. **Design System** : http://localhost:4201
+5. **Tela de entrada** : http://localhost:4202
+3. **Tela de Clientes** : http://localhost:4203
+4. **Tela de Clientes selecionados** : http://localhost:4204

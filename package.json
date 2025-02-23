@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start:all": "concurrently \"npx ng serve mfe-clients\" \"npx ng serve mfe-ds\" \"npx ng serve mfe-login\" \"npx ng serve mfe-user-clients\" \"npx ng serve shell\"",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
