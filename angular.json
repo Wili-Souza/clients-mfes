@@ -21,6 +21,9 @@
             "production": {
               "target": "shell:esbuild:production"
             },
+            "homologation": {
+              "target": "shell:esbuild:homologation"
+            },
             "development": {
               "target": "shell:esbuild:development",
               "dev": true
@@ -106,6 +109,32 @@
                 }
               ]
             },
+            "homologation": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all",
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "projects/shell/public/dev",
+                  "output": "/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "projects/shell/public"
+                }
+              ]
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
@@ -160,6 +189,9 @@
           "configurations": {
             "production": {
               "target": "mfe-ds:esbuild:production"
+            },
+            "homologation": {
+              "target": "mfe-ds:esbuild:homologation"
             },
             "development": {
               "target": "mfe-ds:esbuild:development",
@@ -246,6 +278,32 @@
                 }
               ]
             },
+            "homologation": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all",
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "projects/mfe-ds/public/dev",
+                  "output": "/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "projects/mfe-ds/public"
+                }
+              ]
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
@@ -299,6 +357,9 @@
           "configurations": {
             "production": {
               "target": "mfe-login:esbuild:production"
+            },
+            "homologation": {
+              "target": "mfe-login:esbuild:homologation"
             },
             "development": {
               "target": "mfe-login:esbuild:development",
@@ -385,6 +446,32 @@
                 }
               ]
             },
+            "homologation": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all",
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "projects/mfe-login/public/dev",
+                  "output": "/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "projects/mfe-login/public"
+                }
+              ]
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
@@ -438,6 +525,9 @@
           "configurations": {
             "production": {
               "target": "mfe-clients:esbuild:production"
+            },
+            "homologation": {
+              "target": "mfe-clients:esbuild:homologation"
             },
             "development": {
               "target": "mfe-clients:esbuild:development",
@@ -524,6 +614,32 @@
                 }
               ]
             },
+            "homologation": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all",
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "projects/mfe-clients/public/dev",
+                  "output": "/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "projects/mfe-clients/public"
+                }
+              ]
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
@@ -578,6 +694,9 @@
           "configurations": {
             "production": {
               "target": "mfe-user-clients:esbuild:production"
+            },
+            "homologation": {
+              "target": "mfe-user-clients:esbuild:homologation"
             },
             "development": {
               "target": "mfe-user-clients:esbuild:development",
@@ -656,6 +775,32 @@
                 {
                   "glob": "**/*",
                   "input": "projects/mfe-user-clients/public/prod",
+                  "output": "/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "projects/mfe-user-clients/public"
+                }
+              ]
+            },
+            "homologation": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all",
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "projects/mfe-user-clients/public/dev",
                   "output": "/"
                 },
                 {

@@ -8,7 +8,8 @@ RUN npm install
 
 COPY projects/shell ./projects/shell
 
-RUN npm run build --project shell --verbose
+RUN npm run build -- --project shell --configuration=homologation
+# RUN npx ng run shell:esbuild:homologation
 
 FROM nginx:1.23
 VOLUME /var/cache/nginx

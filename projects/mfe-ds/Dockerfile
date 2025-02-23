@@ -8,7 +8,8 @@ RUN npm install
 
 COPY projects/mfe-ds ./projects/mfe-ds
 
-RUN npm run build --project mfe-ds --verbose
+RUN npm run build -- --project mfe-ds --configuration=homologation
+# RUN npx ng run mfe-ds:esbuild:homologation
 
 FROM nginx:1.23
 VOLUME /var/cache/nginx

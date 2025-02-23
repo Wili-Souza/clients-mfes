@@ -8,7 +8,8 @@ RUN npm install
 
 COPY projects/mfe-user-clients ./projects/mfe-user-clients
 
-RUN npm run build --project mfe-user-clients --verbose
+RUN npm run build -- --project mfe-user-clients --configuration=homologation
+# RUN npx ng run mfe-user-clients:esbuild:homologation
 
 FROM nginx:1.23
 VOLUME /var/cache/nginx

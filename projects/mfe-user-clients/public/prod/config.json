@@ -1,4 +1,4 @@
 {
-  "assetsUrl": "http://localhost:4201",
-  "baseUrl": "http://localhost:4203/api"
+  "assetsUrl": "https://clients-mfes-ds.vercel.app",
+  "baseUrl": "https://clients-mfes-clients.vercel.app/api"
 }
