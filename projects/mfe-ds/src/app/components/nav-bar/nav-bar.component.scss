@@ -51,7 +51,8 @@
 
       &.active {
         color: $primary-color;
-        border-bottom: 2px solid $primary-color;
+        text-decoration: underline;
+        text-underline-offset: 3px;
       }
 
       &:hover {
