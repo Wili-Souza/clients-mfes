@@ -40,11 +40,12 @@
 
   .list {
     display: flex;
-    gap: 20px;
     flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 
-    .card {
-      flex: 1 1 calc(25% - 20px);
+    ds-card {
+      flex: 1 1 calc(25% - 40px);
     }
   }
 
