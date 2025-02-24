@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" [class.selected]="selected">
   <div class="content">
     <span class="name">{{ name }}</span>
     <span class="text">Salário: {{ salary | currency : "R$" }} </span>
@@ -7,17 +7,24 @@
   <div class="options">
     @if(readOnly) {
     <div *ngIf="assetsUrl" class="option" (click)="unselect.emit()">
-      <img src="{{ assetsUrl }}/images/minus.png" alt="" />
+      <img src="{{ assetsUrl }}/images/minus.png" alt="minus icon" />
+    </div>
+    } @else { @if(selected) {
+
+    <div *ngIf="assetsUrl" class="option" (click)="unselect.emit()">
+      <img src="{{ assetsUrl }}/images/minus.png" alt="minus icon" />
     </div>
     } @else {
     <div *ngIf="assetsUrl" class="option" (click)="add.emit()">
-      <img src="{{ assetsUrl }}/images/plus.png" alt="" />
+      <img src="{{ assetsUrl }}/images/plus.png" alt="plus icon" />
     </div>
+    }
+
     <div *ngIf="assetsUrl" class="option" (click)="edit.emit()">
-      <img src="{{ assetsUrl }}/images/pencil.png" alt="" />
+      <img src="{{ assetsUrl }}/images/pencil.png" alt="pencil icon" />
     </div>
     <div *ngIf="assetsUrl" class="option" (click)="remove.emit()">
-      <img src="{{ assetsUrl }}/images/trash.png" alt="" />
+      <img src="{{ assetsUrl }}/images/trash.png" alt="trash icon" />
     </div>
     }
   </div>

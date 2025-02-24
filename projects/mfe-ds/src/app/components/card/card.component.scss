@@ -1,11 +1,15 @@
 .card {
   padding: 16px;
   border-radius: 4px;
-  box-shadow: 0px 0px 4px 0px #0000001A;
+  box-shadow: 0px 0px 4px 0px #0000001a;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  &.selected {
+    background-color: #eaf3ff;
+  }
 
   .content {
     display: flex;
@@ -40,11 +44,11 @@
       }
 
       &:hover {
-        opacity: .8;
+        opacity: 0.8;
       }
 
       &:active {
-        opacity: .7;
+        opacity: 0.7;
       }
 
       &:first-child {
