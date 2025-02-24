@@ -28,9 +28,11 @@
         [salary]="client.salary"
         [readOnly]="false"
         [companyValuation]="client.companyValuation"
+        (unselect)="store.unselectClient(client)"
         (remove)="onDeleteClient(client)"
         (edit)="onEditClient(client)"
         (add)="store.addClient(client)"
+        [selected]="store.isSelected(client.id)"
       ></ds-card>
       }
     </div>

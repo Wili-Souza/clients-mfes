@@ -1,7 +1,8 @@
-import { inject, InjectionToken, Injector } from '@angular/core';
+import { computed, inject, InjectionToken, Injector } from '@angular/core';
 import {
   patchState,
   signalStore,
+  withComputed,
   withHooks,
   withMethods,
   withState,
@@ -16,7 +17,7 @@ type ClientsState = {
   userName: string | undefined;
   clients: Client[];
   selectedClient: Client | undefined;
-  addedClients: Client[];
+  addedClientsMap: Map<number, Client>;
   storage: any | undefined;
   pagination: {
     limit: number;
@@ -28,7 +29,7 @@ type ClientsState = {
 const initialState: ClientsState = {
   userName: undefined,
   selectedClient: undefined,
-  addedClients: [],
+  addedClientsMap: new Map(),
   storage: undefined,
   clients: [],
   pagination: {
@@ -44,6 +45,11 @@ const CLIENTS_STATE = new InjectionToken<ClientsState>('UsersState', {
 
 export const ClientsStore = signalStore(
   withState(() => inject(CLIENTS_STATE)),
+
+  withComputed(({ addedClientsMap }) => ({
+    addedClientsList: computed(() => [...addedClientsMap().values()]),
+    addedClientsIds: computed(() => [...addedClientsMap().keys()]),
+  })),
 
   withMethods(
     (
@@ -70,20 +76,36 @@ export const ClientsStore = signalStore(
       },
       getAddedClients(): void {
         if (!store.storage()) return;
-        const clients = store.storage().getSelectedClients() as Client[];
+        const addedClientsMap = new Map();
+        const clientsList = store.storage().getSelectedClients() ?? [];
+        clientsList.forEach((client: Client) =>
+          addedClientsMap.set(client.id, client)
+        );
         patchState(store, () => ({
-          addedClients: clients ?? [],
+          addedClientsMap,
         }));
       },
       addClient(client: Client): void {
-        const current = store.addedClients();
-        current.push(client);
-        const updated = Array.from(new Set(current));
+        const map = new Map(store.addedClientsMap());
+        map.set(client.id, client);
+        const updatedList = [...map.values()];
         patchState(store, () => ({
-          addedClients: updated,
+          addedClientsMap: map,
         }));
         if (!store.storage()) return;
-        store.storage().setSelectedClients(updated);
+        store.storage().setSelectedClients(updatedList);
+      },
+      unselectClient(client: Client): void {
+        const clientId = client.id;
+        if (!store.addedClientsIds().includes(clientId)) return;
+        const map = new Map(store.addedClientsMap());
+        map.delete(client.id);
+        const updatedList = [...map.values()];
+        patchState(store, () => ({
+          addedClientsMap: map,
+        }));
+        if (!store.storage()) return;
+        store.storage().setSelectedClients(updatedList);
       },
       createClient(client: Partial<Client>): void {
         clientService.create(client).subscribe({
@@ -97,9 +119,11 @@ export const ClientsStore = signalStore(
         });
       },
       deleteSelectedClient(): void {
-        if (!store.selectedClient()) return;
-        clientService.delete(store.selectedClient()!.id).subscribe({
+        const client = store.selectedClient();
+        if (!client) return;
+        clientService.delete(client.id).subscribe({
           next: () => {
+            this.unselectClient(client);
             patchState(store, () => ({
               selectedClient: undefined,
             }));
@@ -121,6 +145,9 @@ export const ClientsStore = signalStore(
       },
       selectClient(selectedClient: Client): void {
         patchState(store, () => ({ selectedClient }));
+      },
+      isSelected(id: number): boolean {
+        return store.addedClientsIds().includes(id);
       },
       logout(): void {
         patchState(store, () => ({ userName: undefined }));
